@@ -1,0 +1,458 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ACD61B9414CE11360046847D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD61B9314CE11360046847D /* UIKit.framework */; };
+		ACD61B9614CE11360046847D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD61B9514CE11360046847D /* Foundation.framework */; };
+		ACD61B9814CE11360046847D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD61B9714CE11360046847D /* CoreGraphics.framework */; };
+		ACD61B9E14CE11370046847D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ACD61B9C14CE11370046847D /* InfoPlist.strings */; };
+		ACD61BA014CE11370046847D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD61B9F14CE11370046847D /* main.m */; };
+		ACD61BA414CE11370046847D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD61BA314CE11370046847D /* AppDelegate.m */; };
+		ACD61BA714CE11370046847D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD61BA614CE11370046847D /* ViewController.m */; };
+		ACD61BAA14CE11370046847D /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD61BA814CE11370046847D /* ViewController_iPhone.xib */; };
+		ACD61BAD14CE11370046847D /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD61BAB14CE11370046847D /* ViewController_iPad.xib */; };
+		ACD61BB514CE11370046847D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD61BB414CE11370046847D /* SenTestingKit.framework */; };
+		ACD61BB614CE11370046847D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD61B9314CE11360046847D /* UIKit.framework */; };
+		ACD61BB714CE11370046847D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD61B9514CE11360046847D /* Foundation.framework */; };
+		ACD61BBF14CE11370046847D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ACD61BBD14CE11370046847D /* InfoPlist.strings */; };
+		ACD61BC214CE11370046847D /* MALayoutManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD61BC114CE11370046847D /* MALayoutManagerTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ACD61BB814CE11370046847D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACD61B8614CE11360046847D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ACD61B8E14CE11360046847D;
+			remoteInfo = MALayoutManager;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ACD61B8F14CE11360046847D /* MALayoutManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MALayoutManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACD61B9314CE11360046847D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		ACD61B9514CE11360046847D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		ACD61B9714CE11360046847D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		ACD61B9B14CE11370046847D /* MALayoutManager-Info.plist */ = {isa = PBXFileReference; path = "MALayoutManager-Info.plist"; sourceTree = "<group>"; };
+		ACD61B9D14CE11370046847D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ACD61B9F14CE11370046847D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		ACD61BA114CE11370046847D /* MALayoutManager-Prefix.pch */ = {isa = PBXFileReference; path = "MALayoutManager-Prefix.pch"; sourceTree = "<group>"; };
+		ACD61BA214CE11370046847D /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		ACD61BA314CE11370046847D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		ACD61BA514CE11370046847D /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		ACD61BA614CE11370046847D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		ACD61BA914CE11370046847D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		ACD61BAC14CE11370046847D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		ACD61BB314CE11370046847D /* MALayoutManagerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MALayoutManagerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACD61BB414CE11370046847D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		ACD61BBC14CE11370046847D /* MALayoutManagerTests-Info.plist */ = {isa = PBXFileReference; path = "MALayoutManagerTests-Info.plist"; sourceTree = "<group>"; };
+		ACD61BBE14CE11370046847D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ACD61BC014CE11370046847D /* MALayoutManagerTests.h */ = {isa = PBXFileReference; path = MALayoutManagerTests.h; sourceTree = "<group>"; };
+		ACD61BC114CE11370046847D /* MALayoutManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MALayoutManagerTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ACD61B8C14CE11360046847D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACD61B9414CE11360046847D /* UIKit.framework in Frameworks */,
+				ACD61B9614CE11360046847D /* Foundation.framework in Frameworks */,
+				ACD61B9814CE11360046847D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACD61BAF14CE11370046847D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACD61BB514CE11370046847D /* SenTestingKit.framework in Frameworks */,
+				ACD61BB614CE11370046847D /* UIKit.framework in Frameworks */,
+				ACD61BB714CE11370046847D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ACD61B8414CE11360046847D = {
+			isa = PBXGroup;
+			children = (
+				ACD61B9914CE11360046847D /* MALayoutManager */,
+				ACD61BBA14CE11370046847D /* MALayoutManagerTests */,
+				ACD61B9214CE11360046847D /* Frameworks */,
+				ACD61B9014CE11360046847D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ACD61B9014CE11360046847D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ACD61B8F14CE11360046847D /* MALayoutManager.app */,
+				ACD61BB314CE11370046847D /* MALayoutManagerTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ACD61B9214CE11360046847D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ACD61B9314CE11360046847D /* UIKit.framework */,
+				ACD61B9514CE11360046847D /* Foundation.framework */,
+				ACD61B9714CE11360046847D /* CoreGraphics.framework */,
+				ACD61BB414CE11370046847D /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ACD61B9914CE11360046847D /* MALayoutManager */ = {
+			isa = PBXGroup;
+			children = (
+				ACD61BA214CE11370046847D /* AppDelegate.h */,
+				ACD61BA314CE11370046847D /* AppDelegate.m */,
+				ACD61BA514CE11370046847D /* ViewController.h */,
+				ACD61BA614CE11370046847D /* ViewController.m */,
+				ACD61BA814CE11370046847D /* ViewController_iPhone.xib */,
+				ACD61BAB14CE11370046847D /* ViewController_iPad.xib */,
+				ACD61B9A14CE11370046847D /* Supporting Files */,
+			);
+			path = MALayoutManager;
+			sourceTree = "<group>";
+		};
+		ACD61B9A14CE11370046847D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ACD61B9B14CE11370046847D /* MALayoutManager-Info.plist */,
+				ACD61B9C14CE11370046847D /* InfoPlist.strings */,
+				ACD61B9F14CE11370046847D /* main.m */,
+				ACD61BA114CE11370046847D /* MALayoutManager-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ACD61BBA14CE11370046847D /* MALayoutManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				ACD61BC014CE11370046847D /* MALayoutManagerTests.h */,
+				ACD61BC114CE11370046847D /* MALayoutManagerTests.m */,
+				ACD61BBB14CE11370046847D /* Supporting Files */,
+			);
+			path = MALayoutManagerTests;
+			sourceTree = "<group>";
+		};
+		ACD61BBB14CE11370046847D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ACD61BBC14CE11370046847D /* MALayoutManagerTests-Info.plist */,
+				ACD61BBD14CE11370046847D /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ACD61B8E14CE11360046847D /* MALayoutManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACD61BC514CE11370046847D /* Build configuration list for PBXNativeTarget "MALayoutManager" */;
+			buildPhases = (
+				ACD61B8B14CE11360046847D /* Sources */,
+				ACD61B8C14CE11360046847D /* Frameworks */,
+				ACD61B8D14CE11360046847D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MALayoutManager;
+			productName = MALayoutManager;
+			productReference = ACD61B8F14CE11360046847D /* MALayoutManager.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ACD61BB214CE11370046847D /* MALayoutManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACD61BC814CE11370046847D /* Build configuration list for PBXNativeTarget "MALayoutManagerTests" */;
+			buildPhases = (
+				ACD61BAE14CE11370046847D /* Sources */,
+				ACD61BAF14CE11370046847D /* Frameworks */,
+				ACD61BB014CE11370046847D /* Resources */,
+				ACD61BB114CE11370046847D /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ACD61BB914CE11370046847D /* PBXTargetDependency */,
+			);
+			name = MALayoutManagerTests;
+			productName = MALayoutManagerTests;
+			productReference = ACD61BB314CE11370046847D /* MALayoutManagerTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ACD61B8614CE11360046847D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = ACD61B8914CE11360046847D /* Build configuration list for PBXProject "MALayoutManager" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = ACD61B8414CE11360046847D;
+			productRefGroup = ACD61B9014CE11360046847D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ACD61B8E14CE11360046847D /* MALayoutManager */,
+				ACD61BB214CE11370046847D /* MALayoutManagerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ACD61B8D14CE11360046847D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACD61B9E14CE11370046847D /* InfoPlist.strings in Resources */,
+				ACD61BAA14CE11370046847D /* ViewController_iPhone.xib in Resources */,
+				ACD61BAD14CE11370046847D /* ViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACD61BB014CE11370046847D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACD61BBF14CE11370046847D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ACD61BB114CE11370046847D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ACD61B8B14CE11360046847D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACD61BA014CE11370046847D /* main.m in Sources */,
+				ACD61BA414CE11370046847D /* AppDelegate.m in Sources */,
+				ACD61BA714CE11370046847D /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ACD61BAE14CE11370046847D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ACD61BC214CE11370046847D /* MALayoutManagerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ACD61BB914CE11370046847D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ACD61B8E14CE11360046847D /* MALayoutManager */;
+			targetProxy = ACD61BB814CE11370046847D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		ACD61B9C14CE11370046847D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACD61B9D14CE11370046847D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		ACD61BA814CE11370046847D /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACD61BA914CE11370046847D /* en */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		ACD61BAB14CE11370046847D /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACD61BAC14CE11370046847D /* en */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		ACD61BBD14CE11370046847D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACD61BBE14CE11370046847D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ACD61BC314CE11370046847D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ACD61BC414CE11370046847D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ACD61BC614CE11370046847D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MALayoutManager/MALayoutManager-Prefix.pch";
+				INFOPLIST_FILE = "MALayoutManager/MALayoutManager-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		ACD61BC714CE11370046847D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MALayoutManager/MALayoutManager-Prefix.pch";
+				INFOPLIST_FILE = "MALayoutManager/MALayoutManager-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		ACD61BC914CE11370046847D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MALayoutManager.app/MALayoutManager";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MALayoutManager/MALayoutManager-Prefix.pch";
+				INFOPLIST_FILE = "MALayoutManagerTests/MALayoutManagerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		ACD61BCA14CE11370046847D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MALayoutManager.app/MALayoutManager";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MALayoutManager/MALayoutManager-Prefix.pch";
+				INFOPLIST_FILE = "MALayoutManagerTests/MALayoutManagerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ACD61B8914CE11360046847D /* Build configuration list for PBXProject "MALayoutManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACD61BC314CE11370046847D /* Debug */,
+				ACD61BC414CE11370046847D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACD61BC514CE11370046847D /* Build configuration list for PBXNativeTarget "MALayoutManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACD61BC614CE11370046847D /* Debug */,
+				ACD61BC714CE11370046847D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		ACD61BC814CE11370046847D /* Build configuration list for PBXNativeTarget "MALayoutManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACD61BC914CE11370046847D /* Debug */,
+				ACD61BCA14CE11370046847D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ACD61B8614CE11360046847D /* Project object */;
+}
