@@ -21,6 +21,7 @@
 		ACD61BB714CE11370046847D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD61B9514CE11360046847D /* Foundation.framework */; };
 		ACD61BBF14CE11370046847D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ACD61BBD14CE11370046847D /* InfoPlist.strings */; };
 		ACD61BC214CE11370046847D /* MALayoutManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD61BC114CE11370046847D /* MALayoutManagerTests.m */; };
+		ACD61BCE14CE11E50046847D /* MALayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD61BCD14CE11E50046847D /* MALayoutManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,22 +39,24 @@
 		ACD61B9314CE11360046847D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ACD61B9514CE11360046847D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ACD61B9714CE11360046847D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		ACD61B9B14CE11370046847D /* MALayoutManager-Info.plist */ = {isa = PBXFileReference; path = "MALayoutManager-Info.plist"; sourceTree = "<group>"; };
+		ACD61B9B14CE11370046847D /* MALayoutManager-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MALayoutManager-Info.plist"; sourceTree = "<group>"; };
 		ACD61B9D14CE11370046847D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ACD61B9F14CE11370046847D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		ACD61BA114CE11370046847D /* MALayoutManager-Prefix.pch */ = {isa = PBXFileReference; path = "MALayoutManager-Prefix.pch"; sourceTree = "<group>"; };
-		ACD61BA214CE11370046847D /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		ACD61BA114CE11370046847D /* MALayoutManager-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MALayoutManager-Prefix.pch"; sourceTree = "<group>"; };
+		ACD61BA214CE11370046847D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		ACD61BA314CE11370046847D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		ACD61BA514CE11370046847D /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		ACD61BA514CE11370046847D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		ACD61BA614CE11370046847D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		ACD61BA914CE11370046847D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		ACD61BAC14CE11370046847D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		ACD61BB314CE11370046847D /* MALayoutManagerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MALayoutManagerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACD61BB414CE11370046847D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		ACD61BBC14CE11370046847D /* MALayoutManagerTests-Info.plist */ = {isa = PBXFileReference; path = "MALayoutManagerTests-Info.plist"; sourceTree = "<group>"; };
+		ACD61BBC14CE11370046847D /* MALayoutManagerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MALayoutManagerTests-Info.plist"; sourceTree = "<group>"; };
 		ACD61BBE14CE11370046847D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		ACD61BC014CE11370046847D /* MALayoutManagerTests.h */ = {isa = PBXFileReference; path = MALayoutManagerTests.h; sourceTree = "<group>"; };
+		ACD61BC014CE11370046847D /* MALayoutManagerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MALayoutManagerTests.h; sourceTree = "<group>"; };
 		ACD61BC114CE11370046847D /* MALayoutManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MALayoutManagerTests.m; sourceTree = "<group>"; };
+		ACD61BCC14CE11E50046847D /* MALayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MALayoutManager.h; path = Libraries/MALayoutManager.h; sourceTree = SOURCE_ROOT; };
+		ACD61BCD14CE11E50046847D /* MALayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MALayoutManager.m; path = Libraries/MALayoutManager.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,7 @@
 		ACD61B9914CE11360046847D /* MALayoutManager */ = {
 			isa = PBXGroup;
 			children = (
+				ACD61BCB14CE11950046847D /* MALayoutManager */,
 				ACD61BA214CE11370046847D /* AppDelegate.h */,
 				ACD61BA314CE11370046847D /* AppDelegate.m */,
 				ACD61BA514CE11370046847D /* ViewController.h */,
@@ -152,6 +156,15 @@
 				ACD61BBD14CE11370046847D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ACD61BCB14CE11950046847D /* MALayoutManager */ = {
+			isa = PBXGroup;
+			children = (
+				ACD61BCC14CE11E50046847D /* MALayoutManager.h */,
+				ACD61BCD14CE11E50046847D /* MALayoutManager.m */,
+			);
+			name = MALayoutManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +277,7 @@
 				ACD61BA014CE11370046847D /* main.m in Sources */,
 				ACD61BA414CE11370046847D /* AppDelegate.m in Sources */,
 				ACD61BA714CE11370046847D /* ViewController.m in Sources */,
+				ACD61BCE14CE11E50046847D /* MALayoutManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
