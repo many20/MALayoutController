@@ -12,18 +12,27 @@
 
 @interface MALayoutManager : NSObject
 
+@property (nonatomic, weak) UIView *layoutView;
+@property (nonatomic, strong, readonly) NSString* currentLayout;
+
 - (id)init;
-- (id)initWithView:(UIView *)view;
+- (id)initLayoutWithName:(NSString *)layoutName fromView:(UIView *)view;
 
-- (bool)addLayoutFromView:(UIView *)view inLayout:(int)number;
-- (bool)addLayoutFromNib:(NSString *)nib inLayout:(int)number;
-- (bool)removeLayout:(int)number;
+- (void)clear;
 
-- (bool)addFrame:(CGRect *)frame forNewView:(UIView *)view inLayout:(int)number;
-- (bool)setFrame:(CGRect *)frame forView:(UIView *)view inLayout:(int)number;
-- (bool)removeFrame:(CGRect *)frame forView:(UIView *)view inLayout:(int)number;
+- (void)addNewLayoutWithName:(NSString *)layoutName fromView:(UIView *)view;
+- (void)addNewLayoutWithName:(NSString *)layoutName fromNib:(NSString *)nib;
+- (void)addNewLayoutWithName:(NSString *)layoutName fromNib:(NSString *)nib withIndex:(int)index;
+- (void)removeLayoutWithName:(NSString *)layoutName;
+
+- (bool)addView:(UIView *)view toLayoutWithName:(NSString *)layoutName withSubviews:(bool)subviews;
+- (void)removeView:(UIView *)view fromLayoutWithName:(NSString *)layoutName;
+- (void)removeViewFromLayoutManager:(UIView *)view;
+- (bool)setFrame:(CGRect)frame forView:(UIView *)view inLayoutWithName:(NSString *)layoutName;
+
 - (bool)isValid;
 
-- (bool)changeLayoutToNumber:(int)number;
+- (bool)changeToLayoutWithName:(NSString *)layoutName;
+- (bool)changeFrameFromView:(UIView *)view toLayoutWithName:(NSString *)layoutName withSubviews:(bool)withsubviews;
 
 @end

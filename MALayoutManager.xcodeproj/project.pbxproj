@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC264AFE14D41A3900489A34 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC264AFF14D41A3900489A34 /* ViewController_iPhone.xib */; };
+		AC264B0114D41A5F00489A34 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC264B0214D41A5F00489A34 /* ViewController_iPad.xib */; };
+		AC264B0614D41ACF00489A34 /* ViewController_iPhone_layout2.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC264B0314D41ACF00489A34 /* ViewController_iPhone_layout2.xib */; };
+		AC264B0714D41ACF00489A34 /* ViewController_iPhone_layout3.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC264B0414D41ACF00489A34 /* ViewController_iPhone_layout3.xib */; };
 		ACD61B9414CE11360046847D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD61B9314CE11360046847D /* UIKit.framework */; };
 		ACD61B9614CE11360046847D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD61B9514CE11360046847D /* Foundation.framework */; };
 		ACD61B9814CE11360046847D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD61B9714CE11360046847D /* CoreGraphics.framework */; };
@@ -14,8 +18,6 @@
 		ACD61BA014CE11370046847D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD61B9F14CE11370046847D /* main.m */; };
 		ACD61BA414CE11370046847D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD61BA314CE11370046847D /* AppDelegate.m */; };
 		ACD61BA714CE11370046847D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD61BA614CE11370046847D /* ViewController.m */; };
-		ACD61BAA14CE11370046847D /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD61BA814CE11370046847D /* ViewController_iPhone.xib */; };
-		ACD61BAD14CE11370046847D /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD61BAB14CE11370046847D /* ViewController_iPad.xib */; };
 		ACD61BB514CE11370046847D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD61BB414CE11370046847D /* SenTestingKit.framework */; };
 		ACD61BB614CE11370046847D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD61B9314CE11360046847D /* UIKit.framework */; };
 		ACD61BB714CE11370046847D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACD61B9514CE11360046847D /* Foundation.framework */; };
@@ -35,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC264AFF14D41A3900489A34 /* ViewController_iPhone.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController_iPhone.xib; sourceTree = "<group>"; };
+		AC264B0214D41A5F00489A34 /* ViewController_iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewController_iPad.xib; sourceTree = "<group>"; };
+		AC264B0314D41ACF00489A34 /* ViewController_iPhone_layout2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController_iPhone_layout2.xib; sourceTree = "<group>"; };
+		AC264B0414D41ACF00489A34 /* ViewController_iPhone_layout3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController_iPhone_layout3.xib; sourceTree = "<group>"; };
 		ACD61B8F14CE11360046847D /* MALayoutManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MALayoutManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACD61B9314CE11360046847D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ACD61B9514CE11360046847D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -47,8 +53,6 @@
 		ACD61BA314CE11370046847D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		ACD61BA514CE11370046847D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		ACD61BA614CE11370046847D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		ACD61BA914CE11370046847D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		ACD61BAC14CE11370046847D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		ACD61BB314CE11370046847D /* MALayoutManagerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MALayoutManagerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACD61BB414CE11370046847D /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		ACD61BBC14CE11370046847D /* MALayoutManagerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MALayoutManagerTests-Info.plist"; sourceTree = "<group>"; };
@@ -121,8 +125,10 @@
 				ACD61BA314CE11370046847D /* AppDelegate.m */,
 				ACD61BA514CE11370046847D /* ViewController.h */,
 				ACD61BA614CE11370046847D /* ViewController.m */,
-				ACD61BA814CE11370046847D /* ViewController_iPhone.xib */,
-				ACD61BAB14CE11370046847D /* ViewController_iPad.xib */,
+				AC264AFF14D41A3900489A34 /* ViewController_iPhone.xib */,
+				AC264B0314D41ACF00489A34 /* ViewController_iPhone_layout2.xib */,
+				AC264B0414D41ACF00489A34 /* ViewController_iPhone_layout3.xib */,
+				AC264B0214D41A5F00489A34 /* ViewController_iPad.xib */,
 				ACD61B9A14CE11370046847D /* Supporting Files */,
 			);
 			path = MALayoutManager;
@@ -238,8 +244,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACD61B9E14CE11370046847D /* InfoPlist.strings in Resources */,
-				ACD61BAA14CE11370046847D /* ViewController_iPhone.xib in Resources */,
-				ACD61BAD14CE11370046847D /* ViewController_iPad.xib in Resources */,
+				AC264AFE14D41A3900489A34 /* ViewController_iPhone.xib in Resources */,
+				AC264B0114D41A5F00489A34 /* ViewController_iPad.xib in Resources */,
+				AC264B0614D41ACF00489A34 /* ViewController_iPhone_layout2.xib in Resources */,
+				AC264B0714D41ACF00489A34 /* ViewController_iPhone_layout3.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,22 +314,6 @@
 				ACD61B9D14CE11370046847D /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		ACD61BA814CE11370046847D /* ViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ACD61BA914CE11370046847D /* en */,
-			);
-			name = ViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		ACD61BAB14CE11370046847D /* ViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ACD61BAC14CE11370046847D /* en */,
-			);
-			name = ViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 		ACD61BBD14CE11370046847D /* InfoPlist.strings */ = {
@@ -457,6 +449,7 @@
 				ACD61BC714CE11370046847D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ACD61BC814CE11370046847D /* Build configuration list for PBXNativeTarget "MALayoutManagerTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +458,7 @@
 				ACD61BCA14CE11370046847D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
