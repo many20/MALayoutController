@@ -14,7 +14,10 @@
 
 MALayoutManager *layoutManager;
 int value;
-UIView *newView;
+UIView *newView1;
+UIView *newView2;
+UIView *newSubview1;
+UIView *newSubview2;
 
 
 - (void)didReceiveMemoryWarning
@@ -30,32 +33,84 @@ UIView *newView;
     [super viewDidLoad];
 	
     layoutManager = [[MALayoutManager alloc] initLayoutWithName:@"portraiLayout1" fromView:self.view];
-    [layoutManager addNewLayoutWithName:@"landscapeLayout1" fromNib:@"ViewController_iPhone_layout2"];
-    [layoutManager addNewLayoutWithName:@"portraiLayout2" fromView:self.view];
-    [layoutManager addNewLayoutWithName:@"landscapeLayout2" fromNib:@"ViewController_iPhone_layout3"];
-    [layoutManager addNewLayoutWithName:@"landscapeLayout3" fromNib:@"ViewController_iPhone_layout3" withIndex:1];
+    [layoutManager addLayoutWithName:@"landscapeLayout1" fromNib:@"ViewController_iPhone_layout2"];
+    [layoutManager addLayoutWithName:@"portraiLayout2" fromView:self.view];
+    [layoutManager addLayoutWithName:@"landscapeLayout2" fromNib:@"ViewController_iPhone_layout3"];
+    [layoutManager addLayoutWithName:@"landscapeLayout3" fromNib:@"ViewController_iPhone_layout3" withIndex:1];
     
     [layoutManager setFrame:(CGRect){outletView1.frame.origin, {50, 100}} forView:outletView1 inLayoutWithName:@"portraiLayout2"];
     [layoutManager setFrame:(CGRect){outletView2.frame.origin, {100, 50}} forView:outletView2 inLayoutWithName:@"portraiLayout2"];
     [layoutManager setFrame:CGRectOffset(outletView3.frame, 40, 40) forView:outletView3 inLayoutWithName:@"portraiLayout2"];
     [layoutManager setFrame:CGRectMake(0, 20, 60, 70) forView:outletView4 inLayoutWithName:@"portraiLayout2"];
     
-    newView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMidX([[UIScreen mainScreen] applicationFrame]), CGRectGetMidY([[UIScreen mainScreen] applicationFrame]), 100, 100)];
-    
-    [self.view addSubview:newView];
-    [layoutManager addView:newView toLayoutWithName:@"portraiLayout1" withSubviews:NO];
-    [layoutManager setFrame:CGRectMake(0, 0, 100, 100) forView:newView inLayoutWithName:@"portraiLayout1"];
-    [layoutManager setFrame:CGRectMake(300, 300, 100, 100) forView:newView inLayoutWithName:@"portraiLayout1"];
-    [layoutManager setFrame:CGRectMake(300, 0, 100, 100) forView:newView inLayoutWithName:@"portraiLayout1"];
+    newView1 = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMidX([[UIScreen mainScreen] applicationFrame]), CGRectGetMidY([[UIScreen mainScreen] applicationFrame]), 100, 100)];
+    [layoutManager setFrame:CGRectMake(0, 0, 100, 100) forView:newView1 inLayoutWithName:@"portraiLayout1"];
+    [layoutManager setFrame:CGRectMake(300, 300, 100, 100) forView:newView1 inLayoutWithName:@"portraiLayout1"];
+    [layoutManager setFrame:CGRectMake(300, 0, 100, 100) forView:newView1 inLayoutWithName:@"portraiLayout1"];
     
     value = 0;
+    
+    
+    
+    //### Testes
+    
+    /*
+    newView1 = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMidX([[UIScreen mainScreen] applicationFrame]), CGRectGetMidY([[UIScreen mainScreen] applicationFrame]), 100, 100)];
+    newView1.backgroundColor = [UIColor blackColor];
+    newView2 = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMidX([[UIScreen mainScreen] applicationFrame]), CGRectGetMidY([[UIScreen mainScreen] applicationFrame]), 100, 100)];
+    newView2.backgroundColor = [UIColor brownColor];
+    newSubview1 = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMidX([[UIScreen mainScreen] applicationFrame]), CGRectGetMidY([[UIScreen mainScreen] applicationFrame]), 60, 60)];
+    newSubview1.backgroundColor = [UIColor yellowColor];
+    newSubview2 = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMidX([[UIScreen mainScreen] applicationFrame]), CGRectGetMidY([[UIScreen mainScreen] applicationFrame]), 20, 20)];
+    newSubview2.backgroundColor = [UIColor redColor];
+    
+    [newView1 addSubview:newSubview1];
+    [newView2 addSubview:newSubview2];
+    [self.view addSubview:newView1];
+    [self.view addSubview:newView2];
+    
+    if ([layoutManager addView:newView1 toLayoutWithName:@"portraiLayout1" withSubviews:NO]) {
+        NSLog(@"add one");
+    }
+    if ([layoutManager addView:newView1 toLayoutWithName:@"portraiLayout1" withSubviews:NO]) {
+        NSLog(@"add the some");
+    }
+    
+    if ([layoutManager addView:newView2 toLayoutWithName:@"portraiLayout1" withSubviews:YES]) {
+        NSLog(@"add one");
+    }
+    if ([layoutManager addView:newView2 toLayoutWithName:@"portraiLayout1" withSubviews:YES]) {
+        NSLog(@"add the some");
+    }
+     
+    [layoutManager setFrame:CGRectMake(0, 0, 100, 100) forView:newView1 inLayoutWithName:@"portraiLayout1"];
+    [layoutManager setFrame:CGRectMake(300, 300, 100, 100) forView:newView1 inLayoutWithName:@"portraiLayout1"];
+    [layoutManager setFrame:CGRectMake(300, 0, 100, 100) forView:newView1 inLayoutWithName:@"portraiLayout1"];
+    
+    newSubview1.frame = CGRectMake(0, 0, 30, 70);
+    newSubview2.frame = CGRectMake(0, 0, 30, 70);
+    
+    if ([layoutManager addView:newSubview1 toLayoutWithName:@"portraiLayout1" withSubviews:NO]) {
+        NSLog(@"add modivied subview1 for portraiLayout1");
+    }
+    if ([layoutManager addView:newSubview2 toLayoutWithName:@"portraiLayout1" withSubviews:NO]) {
+        NSLog(@"add modivied subview2 for portraiLayout1");
+    }
+    if ([layoutManager addView:newSubview1 toLayoutWithName:@"portraiLayout2" withSubviews:NO]) {
+        NSLog(@"add modivied subview1 for portraiLayout2");
+    }
+    if ([layoutManager addView:newSubview2 toLayoutWithName:@"portraiLayout2" withSubviews:NO]) {
+        NSLog(@"add modivied subview2 for portraiLayout2");
+    }
+    */
+    
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    [layoutManager clear];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -83,11 +138,19 @@ UIView *newView;
             value++;
             switch (value) {
                 case 2:
-                    [layoutManager removeView:newView fromLayoutWithName:@"portraiLayout1"];
-                    break;    
-                case 4:
-                    [layoutManager removeViewFromLayoutManager:newView];
+                    [layoutManager removeView:newView1 fromLayoutWithName:@"portraiLayout1" withSubviews:NO];
                     break;
+                case 3:
+                    //reverse action
+                    [layoutManager removeView:newView1 fromLayoutWithName:@"portraiLayout1" withSubviews:YES];
+                    break;  
+                case 4:
+                    [layoutManager removeViewFromLayoutManager:newView1 withSubviews:NO];
+                    break;
+                case 5:
+                    //reverse action
+                    [layoutManager removeViewFromLayoutManager:newView1 withSubviews:YES];
+                    break;  
                 case 6:
                     [layoutManager removeLayoutWithName:@"portraiLayout1"];
                     break;
