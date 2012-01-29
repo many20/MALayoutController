@@ -3,7 +3,7 @@
 //  MALayoutManager
 //
 //  Created by Mario Adrian on 23.01.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Mario Adrian. All rights reserved.
 //
 
 #import "MALayoutManager.h"
@@ -37,12 +37,13 @@
 }
 
 - (id)initLayoutWithName:(NSString *)layoutName fromView:(UIView *)view {
+    assert(view != nil && layoutName != nil);
     if((self = [super init])) {   
         self.layoutView = view;
         layouts = [[NSMutableDictionary alloc] initWithCapacity:2];
          
         if(view != nil) {
-            [self addNewLayoutWithName:layoutName fromView:view];
+            [self addLayoutWithName:layoutName fromView:view];
             currentLayout = layoutName;
         }
     }
@@ -56,7 +57,7 @@
     [layouts removeAllObjects];
 }
 
-- (void)addNewLayoutWithName:(NSString *)layoutName fromView:(UIView *)view {
+- (void)addLayoutWithName:(NSString *)layoutName fromView:(UIView *)view {
     assert(view != nil && layoutName != nil); 
     
     NSMutableDictionary *layoutDictionary = [NSMutableDictionary dictionary];
@@ -67,11 +68,11 @@
     }
 }
 
-- (void)addNewLayoutWithName:(NSString *)layoutName fromNib:(NSString *)nib {     
-    [self addNewLayoutWithName:layoutName fromNib:nib withIndex:0];
+- (void)addLayoutWithName:(NSString *)layoutName fromNib:(NSString *)nib {     
+    [self addLayoutWithName:layoutName fromNib:nib withIndex:0];
 }
 
-- (void)addNewLayoutWithName:(NSString *)layoutName fromNib:(NSString *)nib withIndex:(int)index { 
+- (void)addLayoutWithName:(NSString *)layoutName fromNib:(NSString *)nib withIndex:(int)index { 
     assert(nib != nil && layoutName != nil);
         
     UIViewController *controller = [[UIViewController alloc] init];           
@@ -89,7 +90,7 @@
         [self addLayoutFromAlternativeView:alternativeViewSubview forView:layoutViewSubview toDictionary:layoutDictionary];
     }
 }
-//Test
+
 - (void)removeLayoutWithName:(NSString *)layoutName { 
     [layouts removeObjectForKey:layoutName];
 }
@@ -98,60 +99,71 @@
     assert(view != nil && layoutName != nil);
       
     NSMutableDictionary *layoutDictionary = [layouts objectForKey:layoutName];
-    
-    if ([layoutDictionary objectForKey:[NSNumber numberWithInt:(int)view]] != nil) {  //gibt es schon
+    if (layoutDictionary == nil) {
         return NO;
     }
     
     if (subviews == YES) {
         [self addLayoutFromView:view toDictionary:layoutDictionary]; 
-    } else {
-        NSMutableDictionary *config = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                       @"frame",
-                                       [NSValue valueWithCGRect:view.frame],
-                                       //@"alpha",
-                                       //[NSNumber numberWithFloat:view.alpha],
-                                       //@"autoresizingMask",
-                                       //[NSNumber numberWithUnsignedInt:view.autoresizingMask],
-                                       nil];
+    } else {        
+        NSMutableDictionary *config = [NSMutableDictionary dictionaryWithCapacity:3];
+        [config setObject:[NSValue valueWithCGRect:view.frame] forKey:@"frame"];
+        //[config setObject:[NSNumber numberWithFloat:view.alpha] forKey:@"alpha"];
+        //[config setObject:[NSNumber numberWithUnsignedInt:view.autoresizingMask] forKey:@"autoresizingMask"];  
         [layoutDictionary setObject:config forKey:[NSNumber numberWithInt:(int)view]];
-    }
-        
+    }        
     return YES;
 }
-//Test
-- (void)removeView:(UIView *)view fromLayoutWithName:(NSString *)layoutName { 
+//test
+- (bool)removeView:(UIView *)view fromLayoutWithName:(NSString *)layoutName withSubviews:(bool)subviews { 
     assert(view != nil && layoutName != nil);
     
     NSMutableDictionary *layoutDictionary = [layouts objectForKey:layoutName];
-    [self removeLayoutFromView:view fromDictionary:layoutDictionary]; 
+    if (layoutDictionary == nil) {
+        return NO;
+    }
+    
+    if (subviews == YES) {
+        [self removeLayoutFromView:view fromDictionary:layoutDictionary];
+    }else {
+        [layoutDictionary removeObjectForKey:[NSNumber numberWithInt:(int)view]];
+    }
+    return YES;
 }
-//TODO
-- (void)removeViewFromLayoutManager:(UIView *)view { 
+//test
+- (void)removeViewFromLayoutManager:(UIView *)view withSubviews:(bool)subviews { 
     assert(view != nil);
     
     //View und subviews müssen aus viewarray entfernt werden
-  
-    for (NSMutableDictionary *layoutDictionary in layouts.allValues) {
-        [self removeLayoutFromView:view fromDictionary:layoutDictionary]; 
+    if (subviews == YES) {
+        for (NSMutableDictionary *layoutDictionary in layouts.allValues) {
+            [self removeLayoutFromView:view fromDictionary:layoutDictionary]; 
+        }
+    }else {
+        for (NSMutableDictionary *layoutDictionary in layouts.allValues) {
+            [layoutDictionary removeObjectForKey:[NSNumber numberWithInt:(int)view]]; 
+        }
     }
 }
-//TODO:
+
 - (bool)setFrame:(CGRect)frame forView:(UIView *)view inLayoutWithName:(NSString *)layoutName { 
-    assert([layouts objectForKey:layoutName] != nil && view != nil);
+    assert(view != nil && layoutName != nil);
     
     NSMutableDictionary *layoutDictionary = [layouts objectForKey:layoutName];
-    NSMutableDictionary *config = [layoutDictionary objectForKey:view];
-    if (config == nil) {    //den view gibt es noch nicht in dictionary       
+    if (layoutDictionary == nil) {
+        return NO;
+    }
+    NSMutableDictionary *config = [layoutDictionary objectForKey:[NSNumber numberWithInt:(int)view]];
+    if (config == nil) {    //gibt es noch nicht in dictionary       
         config = [NSMutableDictionary dictionaryWithCapacity:3];
         [config setObject:[NSValue valueWithCGRect:view.frame] forKey:@"frame"];
         //[config setObject:[NSNumber numberWithFloat:view.alpha] forKey:@"alpha"];
         //[config setObject:[NSNumber numberWithUnsignedInt:view.autoresizingMask] forKey:@"autoresizingMask"];
         
-        [layoutDictionary setObject:config forKey:view];   
+        [layoutDictionary setObject:config forKey:[NSNumber numberWithInt:(int)view]];           
     } else {
-        [config removeObjectForKey:@"frame"]; 
-        [config setObject:[NSValue valueWithCGRect:view.frame] forKey:@"frame"];    
+        [config removeObjectForKey:@"frame"];
+        [config setObject:[NSValue valueWithCGRect:frame] forKey:@"frame"];
     }
     return YES; 
 }
@@ -178,7 +190,7 @@
 }
 //Test
 - (bool)changeFrameFromView:(UIView *)view toLayoutWithName:(NSString *)layoutName withSubviews:(bool)withsubviews {
-    assert([self isValid] == YES && view != nil);
+    assert([self isValid] == YES && view != nil && layoutName != nil);
     
     NSMutableDictionary *layoutDictionary = [layouts objectForKey:layoutName];
     if (layoutDictionary == nil) {
@@ -255,7 +267,7 @@
     //NSMutableDictionary *tmp = [dictionary objectForKey:[NSNumber numberWithInt:(int)view]];
     //NSLog(@"%@", NSStringFromCGRect([[tmp objectForKey:@"frame"]CGRectValue]));
     
-    for (int i = 0; i < view.subviews.count; i++) {
+    for (int i = 0; i < view.subviews.count; i++) {        
         UIView *subview = [view.subviews objectAtIndex:i];
         UIView *alternativeSubview = [alternativeView.subviews objectAtIndex:i];
         
