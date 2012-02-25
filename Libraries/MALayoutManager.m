@@ -26,7 +26,14 @@
 @synthesize layoutView = _layoutView;
 @synthesize currentLayout;
 
-    NSMutableDictionary *layouts = nil;
+NSMutableDictionary *layouts = nil;
+
+
+BOOL _caching = NO;
+NSString *_cacheNib = @"";
+NSArray *_cacheAlternativeViewArray = nil;
+
+
 
 - (id)init {
     if((self = [super init])) { 
@@ -57,6 +64,15 @@
     [layouts removeAllObjects];
 }
 
+- (void)addLayoutsFromNibWithCaching:(BOOL)caching {
+    _caching = caching;
+}
+
+- (void)clearCache {
+    _cacheNib = @"";
+    _cacheAlternativeViewArray = nil;
+}
+
 - (void)addLayoutWithName:(NSString *)layoutName fromView:(UIView *)view {
     assert(view != nil && layoutName != nil); 
     
@@ -74,9 +90,23 @@
 
 - (void)addLayoutWithName:(NSString *)layoutName fromNib:(NSString *)nib withIndex:(int)index { 
     assert(nib != nil && layoutName != nil);
+    
+    
+    UIView *alternativeView = nil;
+    
+    if ([_cacheNib isEqualToString:nib] == NO) {
+        UIViewController *controller = [[UIViewController alloc] init];
+        NSArray *alternativeViewArray = [[NSBundle mainBundle] loadNibNamed:nib owner:controller options:nil];
+        alternativeView = [alternativeViewArray objectAtIndex:index];
         
-    UIViewController *controller = [[UIViewController alloc] init];           
-    UIView *alternativeView = [[[NSBundle mainBundle] loadNibNamed:nib owner:controller options:nil] objectAtIndex:index];
+        if (_caching == YES) {
+            _cacheNib = nib;
+            _cacheAlternativeViewArray = alternativeViewArray;
+        }
+        
+    } else {
+        alternativeView = [_cacheAlternativeViewArray objectAtIndex:index];
+    }
     
     NSMutableDictionary *layoutDictionary = [NSMutableDictionary dictionary];
     [layouts setObject:layoutDictionary forKey:layoutName];  
@@ -286,6 +316,5 @@
         [self removeLayoutFromView:subview fromDictionary:dictionary];
     }
 }
-
 
 @end

@@ -20,6 +20,9 @@
 
 - (void)clear;
 
+- (void)addLayoutsFromNibWithCaching:(BOOL)caching;
+- (void)clearCache;
+
 - (void)addLayoutWithName:(NSString *)layoutName fromView:(UIView *)view;
 - (void)addLayoutWithName:(NSString *)layoutName fromNib:(NSString *)nib;
 - (void)addLayoutWithName:(NSString *)layoutName fromNib:(NSString *)nib withIndex:(int)index;
