@@ -35,8 +35,13 @@ UIView *newSubview2;
     layoutManager = [[MALayoutManager alloc] initLayoutWithName:@"portraiLayout1" fromView:self.view];
     [layoutManager addLayoutWithName:@"landscapeLayout1" fromNib:@"ViewController_iPhone_layout2"];
     [layoutManager addLayoutWithName:@"portraiLayout2" fromView:self.view];
+    
+    //[layoutManager addLayoutsFromNibWithCaching:YES];
+    
     [layoutManager addLayoutWithName:@"landscapeLayout2" fromNib:@"ViewController_iPhone_layout3"];
     [layoutManager addLayoutWithName:@"landscapeLayout3" fromNib:@"ViewController_iPhone_layout3" withIndex:1];
+    
+    //[layoutManager clearCache];
     
     [layoutManager setFrame:(CGRect){outletView1.frame.origin, {50, 100}} forView:outletView1 inLayoutWithName:@"portraiLayout2"];
     [layoutManager setFrame:(CGRect){outletView2.frame.origin, {100, 50}} forView:outletView2 inLayoutWithName:@"portraiLayout2"];
