@@ -1,4 +1,4 @@
-# MALayoutManager
+# Why MALayoutManager?
 
 ---
 
@@ -10,16 +10,16 @@ with this class you can do:
 - switch the layout of the current view
 - modify the layouts in the LayoutManager
 
-# VERSION HISTORY
+Full **ARC** support
+
+# TODO
 
 ---
-### 0.1 
 
 - the modify methods are not fully implemented
+- ARC compatibility for ios 4.0 are missing, currently it only supports ios 5.0
 
-
-# EXAMPLE
-
+# How to use
 ---
 
 ### generate it:
