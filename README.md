@@ -7,7 +7,7 @@ My goal was to make a class that can store the frame propertys of the view hiera
 with this class you can do:
 
 - store the frame propertys from a view hierarchy or from a nib file
-- set the frame propertys of the current view to switch the layout
+- switch the layout of the current view
 - modify the layouts in the LayoutManager
 
 # VERSION HISTORY
