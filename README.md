@@ -23,13 +23,15 @@ with this class you can do:
 ---
 
 ### generate it:
-  
-	    layoutManager = [[MALayoutManager alloc] initLayoutWithName:@"portraiLayout" fromView:self.view];
-        [layoutManager addLayoutWithName:@"landscapeLayout" fromNib:@"iPhone_landscapeLayout"];
+
+    layoutManager = [[MALayoutManager alloc] initLayoutWithName:@"portraiLayout" fromView:self.view];
+    [layoutManager addLayoutWithName:@"landscapeLayout" fromNib:@"iPhone_landscapeLayout"];
         
 ### change layout:
 
-    [layoutManager changeToLayoutWithName:@"landscapeLayout1"];
+    [layoutManager changeToLayoutWithName:@"landscapeLayout"];
+    or
+    [layoutManager changeToLayoutWithName:@"portraiLayout"];
     
 # LICENSE
 
