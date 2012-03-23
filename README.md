@@ -10,23 +10,24 @@ with this class you can do:
 - switch the layout of the current view
 - modify the layouts in the LayoutManager
 
-Full **ARC** support
+Full **ARC** support   
+support for ios 4.0   
 
 # TODO
 
 ---
 
 - the modify methods are not fully implemented
-- ARC compatibility for ios 4.0 are missing, currently it only supports ios 5.0
+
 
 # How to use
 ---
 
 ### generate it:
 
-    layoutManager = [[MALayoutManager alloc] initLayoutWithName:@"portraiLayout" fromView:self.view];
+    layoutManager = [[MALayoutManager alloc] initLayoutWithName:@"portraiLayout" fromView:self.view withBaseView:NO]; 
     [layoutManager addLayoutWithName:@"landscapeLayout" fromNib:@"iPhone_landscapeLayout"];
-        
+   
 ### change layout:
 
     [layoutManager changeToLayoutWithName:@"landscapeLayout"];
