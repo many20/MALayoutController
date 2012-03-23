@@ -45,32 +45,35 @@
 @synthesize layoutView = _layoutView;
 @synthesize currentLayout;
 
-NSMutableDictionary *layouts = nil;
-
-
-BOOL _caching = NO;
-NSString *_cacheNib = @"";
-NSArray *_cacheAlternativeViewArray = nil;
-
-
+@synthesize nibCaching;
+@synthesize baseView;
 
 - (id)init {
     if((self = [super init])) { 
+        self.layoutView = nil;
         layouts = [[NSMutableDictionary alloc] initWithCapacity:2];
-        currentLayout = nil;
+        currentLayout = @"";
+        cachedNibName = @"";
+        nibCaching = NO;
+        baseView = NO;
     }
     return self;
 }
 
-- (id)initLayoutWithName:(NSString *)layoutName fromView:(UIView *)view {
+- (id)initLayoutWithName:(NSString *)layoutName fromView:(UIView *)view withBaseView:(BOOL)_baseView {
     assert(view != nil && layoutName != nil);
     if((self = [super init])) {   
         self.layoutView = view;
         layouts = [[NSMutableDictionary alloc] initWithCapacity:2];
-         
-        if(view != nil) {
+        currentLayout = @"";
+        cachedNibName = @"";
+        nibCaching = NO;
+        baseView = NO;
+        
+        if(view != nil) {            
+            baseView = _baseView;
+            
             [self addLayoutWithName:layoutName fromView:view];
-            currentLayout = layoutName;
         }
     }
     return self;
@@ -83,24 +86,28 @@ NSArray *_cacheAlternativeViewArray = nil;
     [layouts removeAllObjects];
 }
 
-- (void)addLayoutsFromNibWithCaching:(BOOL)caching {
-    _caching = caching;
-}
-
 - (void)clearCache {
-    _cacheNib = @"";
-    _cacheAlternativeViewArray = nil;
+    cachedNibName = @"";
+    cacheAlternativeViewArray = nil;
 }
 
 - (void)addLayoutWithName:(NSString *)layoutName fromView:(UIView *)view {
     assert(view != nil && layoutName != nil); 
+
+#ifdef DEBUG_MALAYOUTMANAGER
+    NSLog(@"addLayoutWithName:fromView:| name: %@; withBaseView:%@", layoutName, (baseView ? @"YES" : @"NO"));
+#endif
     
     NSMutableDictionary *layoutDictionary = [NSMutableDictionary dictionary];
     [layouts setObject:layoutDictionary forKey:layoutName];
-    
-    for (UIView *subview in view.subviews) {
-        [self addLayoutFromView:subview toDictionary:layoutDictionary]; 
-    }
+
+    if (baseView == YES) {
+        [self addLayoutFromView:view toDictionary:layoutDictionary]; 
+    } else {
+        for (UIView *subview in view.subviews) {
+            [self addLayoutFromView:subview toDictionary:layoutDictionary]; 
+        }        
+    }    
 }
 
 - (void)addLayoutWithName:(NSString *)layoutName fromNib:(NSString *)nib {     
@@ -110,33 +117,40 @@ NSArray *_cacheAlternativeViewArray = nil;
 - (void)addLayoutWithName:(NSString *)layoutName fromNib:(NSString *)nib withIndex:(int)index { 
     assert(nib != nil && layoutName != nil);
     
+#ifdef DEBUG_MALAYOUTMANAGER
+    NSLog(@"addLayoutWithName:fromNib:withIndex:| nib: %@; name: %@; index: %d; withBaseView:%@", nib, layoutName, index, (baseView ? @"YES" : @"NO"));
+#endif
     
     UIView *alternativeView = nil;
     
-    if ([_cacheNib isEqualToString:nib] == NO) {
+    if ([cachedNibName isEqualToString:nib] == NO) {
         UIViewController *controller = [[UIViewController alloc] init];
         NSArray *alternativeViewArray = [[NSBundle mainBundle] loadNibNamed:nib owner:controller options:nil];
         alternativeView = [alternativeViewArray objectAtIndex:index];
         
-        if (_caching == YES) {
-            _cacheNib = nib;
-            _cacheAlternativeViewArray = alternativeViewArray;
+        if (nibCaching == YES) {
+            cachedNibName = nib;
+            cacheAlternativeViewArray = alternativeViewArray;
         }
         
     } else {
-        alternativeView = [_cacheAlternativeViewArray objectAtIndex:index];
+        alternativeView = [cacheAlternativeViewArray objectAtIndex:index];
     }
     
     NSMutableDictionary *layoutDictionary = [NSMutableDictionary dictionary];
     [layouts setObject:layoutDictionary forKey:layoutName];  
     
-    UIView *alternativeViewSubview = nil;
-    UIView *layoutViewSubview = nil;    
-    for (int i=0; i<self.layoutView.subviews.count; i++) {
-        layoutViewSubview = [self.layoutView.subviews objectAtIndex:i];
-        alternativeViewSubview = [alternativeView.subviews objectAtIndex:i];
-        
-        [self addLayoutFromAlternativeView:alternativeViewSubview forView:layoutViewSubview toDictionary:layoutDictionary];
+    if (baseView == YES) {
+        [self addLayoutFromAlternativeView:alternativeView forView:self.layoutView toDictionary:layoutDictionary];
+    } else {
+        UIView *alternativeViewSubview = nil;
+        UIView *layoutViewSubview = nil;    
+        for (int i=0; i<self.layoutView.subviews.count; i++) {
+            layoutViewSubview = [self.layoutView.subviews objectAtIndex:i];
+            alternativeViewSubview = [alternativeView.subviews objectAtIndex:i];
+            
+            [self addLayoutFromAlternativeView:alternativeViewSubview forView:layoutViewSubview toDictionary:layoutDictionary];
+        }
     }
 }
 
@@ -155,7 +169,7 @@ NSArray *_cacheAlternativeViewArray = nil;
     if (subviews == YES) {
         [self addLayoutFromView:view toDictionary:layoutDictionary]; 
     } else {        
-        NSMutableDictionary *config = [NSMutableDictionary dictionaryWithCapacity:3];
+        NSMutableDictionary *config = [NSMutableDictionary dictionary];
         [config setObject:[NSValue valueWithCGRect:view.frame] forKey:@"frame"];
         //[config setObject:[NSNumber numberWithFloat:view.alpha] forKey:@"alpha"];
         //[config setObject:[NSNumber numberWithUnsignedInt:view.autoresizingMask] forKey:@"autoresizingMask"];  
@@ -204,7 +218,7 @@ NSArray *_cacheAlternativeViewArray = nil;
     }
     NSMutableDictionary *config = [layoutDictionary objectForKey:[NSNumber numberWithInt:(int)view]];
     if (config == nil) {    //gibt es noch nicht in dictionary       
-        config = [NSMutableDictionary dictionaryWithCapacity:3];
+        config = [NSMutableDictionary dictionary];
         [config setObject:[NSValue valueWithCGRect:view.frame] forKey:@"frame"];
         //[config setObject:[NSNumber numberWithFloat:view.alpha] forKey:@"alpha"];
         //[config setObject:[NSNumber numberWithUnsignedInt:view.autoresizingMask] forKey:@"autoresizingMask"];
@@ -225,16 +239,22 @@ NSArray *_cacheAlternativeViewArray = nil;
 - (bool)changeToLayoutWithName:(NSString *)layoutName {
     assert([self isValid] == YES);
     
+    if (currentLayout == layoutName) {
+        return NO;
+    }  
+            
     NSMutableDictionary *layoutDictionary = [layouts objectForKey:layoutName];
     if (layoutDictionary == nil || self.layoutView == nil) {
         return NO;
     }
-       
-    //NSLog(@" %@ - %@", layoutName, layoutDictionary);
+    
+#ifdef DEBUG_MALAYOUTMANAGER       
+    NSLog(@"changeToLayoutWithName:| %@ - %@", layoutName, layoutDictionary);
+#endif
     
     [self changeLayoutOfView:self.layoutView fromDictionary:layoutDictionary];
     currentLayout = layoutName;
-    
+
     return YES;
 }
 //Test
@@ -246,14 +266,12 @@ NSArray *_cacheAlternativeViewArray = nil;
         return NO;
     }
     
-    if (withsubviews == YES) {
-        [self changeLayoutOfView:self.layoutView fromDictionary:layoutDictionary];
-    } else {
-        NSMutableDictionary *config = [layoutDictionary objectForKey:[NSNumber numberWithInt:(int)view]];
-        view.frame = [(NSValue *)[config objectForKey:@"frame"] CGRectValue]; 
-        //view.alpha = [(NSNumber *)[config objectForKey:@"alpha"] floatValue];
-        //view.autoresizingMask = [(NSNumber *)[config objectForKey:@"autoresizingMask"] unsignedIntValue];
-    }
+    NSMutableDictionary *config = [layoutDictionary objectForKey:[NSNumber numberWithInt:(int)view]];
+    view.frame = [(NSValue *)[config objectForKey:@"frame"] CGRectValue]; 
+    //view.alpha = [(NSNumber *)[config objectForKey:@"alpha"] floatValue];
+    //view.autoresizingMask = [(NSNumber *)[config objectForKey:@"autoresizingMask"] unsignedIntValue];
+    
+    [self changeLayoutOfView:self.layoutView fromDictionary:layoutDictionary];
     
     return YES;
 }
@@ -262,16 +280,20 @@ NSArray *_cacheAlternativeViewArray = nil;
 
 - (void)changeLayoutOfView:(UIView *)view fromDictionary:(NSMutableDictionary *)layoutDictionary {
     assert(view != nil && layoutDictionary != nil);
-    
-    //CGRect rect = view.frame;
+
+#ifdef DEBUG_MALAYOUTMANAGER     
+    CGRect rect = view.frame;
+#endif
     
     NSMutableDictionary *config = [layoutDictionary objectForKey:[NSNumber numberWithInt:(int)view]];
     if (config != nil) {
         view.frame = [(NSValue *)[config objectForKey:@"frame"] CGRectValue]; 
         //view.alpha = [(NSNumber *)[config objectForKey:@"alpha"] floatValue];
         //view.autoresizingMask = [(NSNumber *)[config objectForKey:@"autoresizingMask"] unsignedIntValue];
-        
-        //NSLog(@"from %@ to %@", NSStringFromCGRect(rect), NSStringFromCGRect(view.frame));
+
+#ifdef DEBUG_MALAYOUTMANAGER        
+        NSLog(@"changeLayoutOfView:fromDictionary:| from %@ to %@", NSStringFromCGRect(rect), NSStringFromCGRect(view.frame));
+#endif
     }
 
     for (int i = 0; i < [view.subviews count]; i++) {
@@ -284,12 +306,14 @@ NSArray *_cacheAlternativeViewArray = nil;
 - (void)addLayoutFromView:(UIView *)view toDictionary:(NSMutableDictionary *)dictionary {
 	assert(view != nil && dictionary != nil);
 
-    NSMutableDictionary *config = [NSMutableDictionary dictionaryWithCapacity:3];
+    NSMutableDictionary *config = [NSMutableDictionary dictionary];
     [config setObject:[NSValue valueWithCGRect:view.frame] forKey:@"frame"];
     //[config setObject:[NSNumber numberWithFloat:view.alpha] forKey:@"alpha"];
     //[config setObject:[NSNumber numberWithUnsignedInt:view.autoresizingMask] forKey:@"autoresizingMask"];
-    
-    //NSLog(@"%@", NSStringFromCGRect([(NSValue *)[config objectForKey:@"frame"] CGRectValue]));
+
+#ifdef DEBUG_MALAYOUTMANAGER
+    NSLog(@"addLayoutFromView:toDictionary:| %@", NSStringFromCGRect([(NSValue *)[config objectForKey:@"frame"] CGRectValue]));
+#endif
     
 	[dictionary setObject:config forKey:[NSNumber numberWithInt:(int)view]];
 	
@@ -302,11 +326,12 @@ NSArray *_cacheAlternativeViewArray = nil;
 
 - (void)addLayoutFromAlternativeView:(UIView *)alternativeView forView:(UIView *)view toDictionary:(NSMutableDictionary *)dictionary {
 	assert(alternativeView != nil && view != nil && dictionary != nil);
+#ifdef DEBUG_MALAYOUTMANAGER
+    NSLog(@"addLayoutFromAlternativeView:forView:toDictionary:| %d = %d; %@; %@",view.subviews.count, alternativeView.subviews.count, NSStringFromCGRect(view.frame), NSStringFromCGRect(alternativeView.frame));
+#endif    
     assert(view.subviews.count == alternativeView.subviews.count);
-    
-    //NSLog(@"%@ - %@", NSStringFromCGRect(alternativeView.frame), NSStringFromCGRect(view.frame));
-    
-    NSMutableDictionary *config = [NSMutableDictionary dictionaryWithCapacity:3];
+        
+    NSMutableDictionary *config = [NSMutableDictionary dictionary];
     [config setObject:[NSValue valueWithCGRect:alternativeView.frame] forKey:@"frame"];
     //[config setObject:[NSNumber numberWithFloat:alternativeView.alpha] forKey:@"alpha"];
     //[config setObject:[NSNumber numberWithUnsignedInt:alternativeView.autoresizingMask] forKey:@"autoresizingMask"];

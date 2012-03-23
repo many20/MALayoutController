@@ -218,7 +218,7 @@
 		ACD61B8614CE11360046847D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = ACD61B8914CE11360046847D /* Build configuration list for PBXProject "MALayoutManager" */;
 			compatibilityVersion = "Xcode 3.2";

@@ -29,17 +29,26 @@
 #import <UIKit/UIKit.h>
 
 
-@interface MALayoutManager : NSObject
+//#define DEBUG_MALAYOUTMANAGER
 
-@property (nonatomic, weak) UIView *layoutView;
+
+@interface MALayoutManager : NSObject {
+    NSMutableDictionary *layouts;
+    
+    NSString *cachedNibName;
+    NSArray *cacheAlternativeViewArray;
+}
+
+@property (nonatomic, unsafe_unretained) UIView *layoutView;
 @property (nonatomic, strong, readonly) NSString* currentLayout;
 
+@property (nonatomic) BOOL nibCaching;
+@property (nonatomic) BOOL baseView;
+
 - (id)init;
-- (id)initLayoutWithName:(NSString *)layoutName fromView:(UIView *)view;
+- (id)initLayoutWithName:(NSString *)layoutName fromView:(UIView *)view withBaseView:(BOOL)_baseView;
 
 - (void)clear;
-
-- (void)addLayoutsFromNibWithCaching:(BOOL)caching;
 - (void)clearCache;
 
 - (void)addLayoutWithName:(NSString *)layoutName fromView:(UIView *)view;
