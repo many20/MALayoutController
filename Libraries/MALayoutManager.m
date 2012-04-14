@@ -46,7 +46,7 @@
 @synthesize currentLayout;
 
 @synthesize nibCaching;
-@synthesize baseView;
+@synthesize withBaseView;
 
 - (id)init {
     if((self = [super init])) { 
@@ -55,12 +55,14 @@
         currentLayout = @"";
         cachedNibName = @"";
         nibCaching = NO;
-        baseView = NO;
+        withBaseView = NO;
+        
+        dontAddSubviewsFromThisClasses = nil;
     }
     return self;
 }
 
-- (id)initLayoutWithName:(NSString *)layoutName fromView:(UIView *)view withBaseView:(BOOL)_baseView {
+- (id)initLayoutWithName:(NSString *)layoutName fromView:(UIView *)view withBaseView:(BOOL)baseView {
     assert(view != nil && layoutName != nil);
     if((self = [super init])) {   
         self.layoutView = view;
@@ -68,16 +70,23 @@
         currentLayout = @"";
         cachedNibName = @"";
         nibCaching = NO;
-        baseView = NO;
+        withBaseView = NO;
         
         if(view != nil) {            
-            baseView = _baseView;
+            withBaseView = baseView;
             
             [self addLayoutWithName:layoutName fromView:view];
         }
     }
     return self;
 }
+
+- (id)initLayoutWithName:(NSString *)layoutName fromView:(UIView *)view withBaseView:(BOOL)baseView dontAddSubviewsFromThisClasses:(NSArray *)classes {    
+    dontAddSubviewsFromThisClasses = classes;
+    
+    return [self initLayoutWithName:layoutName fromView:view withBaseView:baseView];
+}
+
 
 //### public methods
 
@@ -101,7 +110,7 @@
     NSMutableDictionary *layoutDictionary = [NSMutableDictionary dictionary];
     [layouts setObject:layoutDictionary forKey:layoutName];
 
-    if (baseView == YES) {
+    if (withBaseView == YES) {
         [self addLayoutFromView:view toDictionary:layoutDictionary]; 
     } else {
         for (UIView *subview in view.subviews) {
@@ -140,7 +149,7 @@
     NSMutableDictionary *layoutDictionary = [NSMutableDictionary dictionary];
     [layouts setObject:layoutDictionary forKey:layoutName];  
     
-    if (baseView == YES) {
+    if (withBaseView == YES) {
         [self addLayoutFromAlternativeView:alternativeView forView:self.layoutView toDictionary:layoutDictionary];
     } else {
         UIView *alternativeViewSubview = nil;
@@ -239,9 +248,9 @@
 - (bool)changeToLayoutWithName:(NSString *)layoutName {
     assert([self isValid] == YES);
     
-    if (currentLayout == layoutName) {
+    /*if (currentLayout == layoutName) {
         return NO;
-    }  
+    }*/
             
     NSMutableDictionary *layoutDictionary = [layouts objectForKey:layoutName];
     if (layoutDictionary == nil || self.layoutView == nil) {
@@ -317,11 +326,18 @@
     
 	[dictionary setObject:config forKey:[NSNumber numberWithInt:(int)view]];
 	
+    //UIButtons option "Shows touch on hightlight" uses a extra View, that makes problems.
+    for (Class class in dontAddSubviewsFromThisClasses) {
+        if([view isMemberOfClass:class] == YES) {
+            return;
+        }
+    }
+                
     for (int i = 0; i < [view.subviews count]; i++) {
         UIView *subview = [view.subviews objectAtIndex:i];
         
-        [self addLayoutFromView:subview toDictionary:dictionary];
-    }
+        [self addLayoutFromView:subview toDictionary:dictionary];        
+    }    
 }
 
 - (void)addLayoutFromAlternativeView:(UIView *)alternativeView forView:(UIView *)view toDictionary:(NSMutableDictionary *)dictionary {
@@ -341,11 +357,18 @@
     //NSMutableDictionary *tmp = [dictionary objectForKey:[NSNumber numberWithInt:(int)view]];
     //NSLog(@"%@", NSStringFromCGRect([[tmp objectForKey:@"frame"]CGRectValue]));
     
-    for (int i = 0; i < view.subviews.count; i++) {        
-        UIView *subview = [view.subviews objectAtIndex:i];
+    //UIButtons option "Shows touch on hightlight" uses a extra View, that makes problems.
+    for (Class class in dontAddSubviewsFromThisClasses) {
+        if([view isMemberOfClass:class] == YES) {
+            return;
+        }
+    }
+              
+    for (int i = 0; i < view.subviews.count; i++) {
+        UIView *subview = [view.subviews objectAtIndex:i];        
         UIView *alternativeSubview = [alternativeView.subviews objectAtIndex:i];
         
-        [self addLayoutFromAlternativeView:alternativeSubview forView:subview toDictionary:dictionary];
+        [self addLayoutFromAlternativeView:alternativeSubview forView:subview toDictionary:dictionary];        
     }
 }
 //Test

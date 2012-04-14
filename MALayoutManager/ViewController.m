@@ -32,7 +32,7 @@ UIView *newSubview2;
 {
     [super viewDidLoad];
 	
-    layoutManager = [[MALayoutManager alloc] initLayoutWithName:@"portraiLayout1" fromView:self.view withBaseView:NO];
+    layoutManager = [[MALayoutManager alloc] initLayoutWithName:@"portraiLayout1" fromView:self.view withBaseView:NO dontAddSubviewsFromThisClasses:[NSArray arrayWithObjects:UIButton.class, nil]];
     [layoutManager addLayoutWithName:@"landscapeLayout1" fromNib:@"ViewController_iPhone_layout2"];
     [layoutManager addLayoutWithName:@"portraiLayout2" fromView:self.view];
     
@@ -57,7 +57,7 @@ UIView *newSubview2;
     
     
     
-    //### Testes
+    //### Tests
     
     /*
     newView1 = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMidX([[UIScreen mainScreen] applicationFrame]), CGRectGetMidY([[UIScreen mainScreen] applicationFrame]), 100, 100)];

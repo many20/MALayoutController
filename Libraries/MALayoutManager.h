@@ -37,16 +37,19 @@
     
     NSString *cachedNibName;
     NSArray *cacheAlternativeViewArray;
+    
+    NSArray *dontAddSubviewsFromThisClasses;
 }
 
 @property (nonatomic, unsafe_unretained) UIView *layoutView;
 @property (nonatomic, strong, readonly) NSString* currentLayout;
 
 @property (nonatomic) BOOL nibCaching;
-@property (nonatomic) BOOL baseView;
+@property (nonatomic) BOOL withBaseView;
 
 - (id)init;
-- (id)initLayoutWithName:(NSString *)layoutName fromView:(UIView *)view withBaseView:(BOOL)_baseView;
+- (id)initLayoutWithName:(NSString *)layoutName fromView:(UIView *)view withBaseView:(BOOL)baseView;
+- (id)initLayoutWithName:(NSString *)layoutName fromView:(UIView *)view withBaseView:(BOOL)baseView dontAddSubviewsFromThisClasses:(NSArray *)classes;
 
 - (void)clear;
 - (void)clearCache;
