@@ -31,18 +31,20 @@
 
 //#define DEBUG_MALAYOUTMANAGER
 
+//#define NDEBUG
+
 
 @interface MALayoutManager : NSObject {
-    NSMutableDictionary *layouts;
+    NSMutableDictionary *_layouts;
     
-    NSString *cachedNibName;
-    NSArray *cacheAlternativeViewArray;
+    NSString *_cachedNibName;
+    NSArray *_cacheAlternativeViewArray;
     
-    NSArray *dontAddSubviewsFromThisClasses;
+    NSArray *_dontAddSubviewsFromThisClasses;
 }
 
 @property (nonatomic, unsafe_unretained) UIView *layoutView;
-@property (nonatomic, strong, readonly) NSString* currentLayout;
+@property (nonatomic, strong, readonly) NSString *currentLayout;
 
 @property (nonatomic) BOOL nibCaching;
 @property (nonatomic) BOOL withBaseView;
@@ -57,6 +59,7 @@
 - (void)addLayoutWithName:(NSString *)layoutName fromView:(UIView *)view;
 - (void)addLayoutWithName:(NSString *)layoutName fromNib:(NSString *)nib;
 - (void)addLayoutWithName:(NSString *)layoutName fromNib:(NSString *)nib withIndex:(int)index;
+- (void)copyLayoutWithName:(NSString *)layoutName toLayoutWithName:(NSString *)newLayoutName;
 - (void)removeLayoutWithName:(NSString *)layoutName;
 
 - (bool)addView:(UIView *)view toLayoutWithName:(NSString *)layoutName withSubviews:(bool)subviews;
@@ -64,6 +67,12 @@
 - (void)removeViewFromLayoutManager:(UIView *)view withSubviews:(bool)subviews;
 
 - (bool)setFrame:(CGRect)frame forView:(UIView *)view inLayoutWithName:(NSString *)layoutName;
+- (CGRect)getFramefromView:(UIView *)view inLayoutWithName:(NSString *)layoutName;
+- (bool)deleteFramefromView:(UIView *)view inLayoutWithName:(NSString *)layoutName;
+
+- (bool)setTag:(int)tag forView:(UIView *)view inLayoutWithName:(NSString *)layoutName;
+- (int)getTagfromView:(UIView *)view inLayoutWithName:(NSString *)layoutName;
+- (bool)deleteTagfromView:(UIView *)view inLayoutWithName:(NSString *)layoutName;
 
 - (bool)isValid;
 
