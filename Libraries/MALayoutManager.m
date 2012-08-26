@@ -46,22 +46,18 @@
  *  @author Mario Adrian
  *  @date 27.8.2012
  *
- *  @version 1.0
+ *  @version 0.3
  *  
+ *
+ *  @todo add view property hidden
+ *
  *
  */
 @implementation MALayoutManager
 
 - (id)init {
     if((self = [super init])) { 
-        self.layoutView = nil;
-        _layouts = [[NSMutableDictionary alloc] initWithCapacity:2];
-        _currentLayout = @"";
-        _cachedNibName = @"";
-        _nibCaching = NO;
-        _withBaseView = NO;
-        
-        _dontAddSubviewsFromThisClasses = nil;
+        [self initProperty];
     }
     return self;
 }
@@ -69,12 +65,8 @@
 - (id)initLayoutWithName:(NSString *)layoutName fromView:(UIView *)view withBaseView:(BOOL)baseView {
     assert(view != nil && layoutName != nil);
     if((self = [super init])) {   
+        [self initProperty];
         self.layoutView = view;
-        _layouts = [[NSMutableDictionary alloc] initWithCapacity:2];
-        _currentLayout = @"";
-        _cachedNibName = @"";
-        _nibCaching = NO;
-        _withBaseView = NO;
         
         if(view != nil) {            
             _withBaseView = baseView;
@@ -86,11 +78,30 @@
 }
 
 - (id)initLayoutWithName:(NSString *)layoutName fromView:(UIView *)view withBaseView:(BOOL)baseView dontAddSubviewsFromThisClasses:(NSArray *)classes {    
-    _dontAddSubviewsFromThisClasses = classes;
-    
-    return [self initLayoutWithName:layoutName fromView:view withBaseView:baseView];
+    assert(view != nil && layoutName != nil);
+    if((self = [super init])) {
+        [self initProperty];
+        self.layoutView = view;
+        _dontAddSubviewsFromThisClasses = classes;
+        
+        if(view != nil) {
+            _withBaseView = baseView;
+            
+            [self addLayoutWithName:layoutName fromView:view];
+        }
+    }
+    return self;
 }
 
+- (void)initProperty {
+    self.layoutView = nil;
+    _layouts = [[NSMutableDictionary alloc] initWithCapacity:2];
+    _currentLayout = @"";
+    _cachedNibName = @"";
+    _nibCaching = NO;
+    _withBaseView = NO;
+    _dontAddSubviewsFromThisClasses = nil;
+}
 
 //### public methods
 
@@ -380,6 +391,7 @@
     return YES;
 }
 
+/// @todo implement test if valid
 - (bool)isValid {    
     
     return YES;
