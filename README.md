@@ -1,6 +1,5 @@
 # Why MALayoutManager?
 
----
 
 My goal was to make a class that can store the frame propertys of the view hierarchy of a view or a nib file as a layout and to switch between this layouts. 
 
@@ -15,13 +14,10 @@ support for ios 4.0
 
 # TODO
 
----
-
 - the modify methods are not fully implemented
 
 
 # How to use
----
 
 ### generate it:
 
@@ -35,8 +31,6 @@ support for ios 4.0
     [layoutManager changeToLayoutWithName:@"portraiLayout"];
     
 # LICENSE
-
----
 
 Copyright 2012 Mario Adrian  
 Released under the MIT Licenses
