@@ -6,8 +6,8 @@
 //  
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface MALayoutManagerTests : SenTestCase
+@interface MALayoutManagerTests : XCTestCase
 
 @end

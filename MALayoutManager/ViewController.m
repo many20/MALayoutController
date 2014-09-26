@@ -167,7 +167,7 @@ UIView *newSubview2;
 - (IBAction)layoutAction2:(id)sender {
     if (UIInterfaceOrientationIsLandscape([self interfaceOrientation])) {
         [UIView animateWithDuration:1.0 animations:^{
-            if (layoutManager.currentLayout == @"landscapeLayout2") {
+            if ([layoutManager.currentLayout isEqualToString:@"landscapeLayout2"]) {
                 [layoutManager changeToLayoutWithName:@"landscapeLayout3"];
                 [layoutManager removeLayoutWithName:@"landscapeLayout3"];
             } else {

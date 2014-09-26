@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>69D5431B-219A-4C31-8CF4-62CD8B663D3A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MALayoutManager</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C9F8F7C7F741E5A4BC539F06FF6F2615FC3EB4F1</key>
+		<string>https://github.com/many20/MALayoutController.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MALayoutManager.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C9F8F7C7F741E5A4BC539F06FF6F2615FC3EB4F1</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/many20/MALayoutController.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C9F8F7C7F741E5A4BC539F06FF6F2615FC3EB4F1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C9F8F7C7F741E5A4BC539F06FF6F2615FC3EB4F1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MALayoutManager</string>
+		</dict>
+	</array>
+</dict>
+</plist>

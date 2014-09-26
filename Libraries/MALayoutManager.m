@@ -42,22 +42,17 @@
 
 @implementation MALayoutManager
 
-@synthesize layoutView = _layoutView;
-@synthesize currentLayout;
-
-@synthesize nibCaching;
-@synthesize withBaseView;
 
 - (id)init {
     if((self = [super init])) { 
         self.layoutView = nil;
-        layouts = [[NSMutableDictionary alloc] initWithCapacity:2];
-        currentLayout = @"";
-        cachedNibName = @"";
-        nibCaching = NO;
-        withBaseView = NO;
+        _layouts = [[NSMutableDictionary alloc] initWithCapacity:2];
+        _currentLayout = @"";
+        _cachedNibName = @"";
+        _nibCaching = NO;
+        _withBaseView = NO;
         
-        dontAddSubviewsFromThisClasses = nil;
+        _dontAddSubviewsFromThisClasses = nil;
     }
     return self;
 }
@@ -66,14 +61,14 @@
     assert(view != nil && layoutName != nil);
     if((self = [super init])) {   
         self.layoutView = view;
-        layouts = [[NSMutableDictionary alloc] initWithCapacity:2];
-        currentLayout = @"";
-        cachedNibName = @"";
-        nibCaching = NO;
-        withBaseView = NO;
+        _layouts = [[NSMutableDictionary alloc] initWithCapacity:2];
+        _currentLayout = @"";
+        _cachedNibName = @"";
+        _nibCaching = NO;
+        _withBaseView = NO;
         
         if(view != nil) {            
-            withBaseView = baseView;
+            _withBaseView = baseView;
             
             [self addLayoutWithName:layoutName fromView:view];
         }
@@ -82,7 +77,7 @@
 }
 
 - (id)initLayoutWithName:(NSString *)layoutName fromView:(UIView *)view withBaseView:(BOOL)baseView dontAddSubviewsFromThisClasses:(NSArray *)classes {    
-    dontAddSubviewsFromThisClasses = classes;
+    _dontAddSubviewsFromThisClasses = classes;
     
     return [self initLayoutWithName:layoutName fromView:view withBaseView:baseView];
 }
@@ -92,12 +87,12 @@
 
 - (void)clear {
     self.layoutView = nil;
-    [layouts removeAllObjects];
+    [_layouts removeAllObjects];
 }
 
 - (void)clearCache {
-    cachedNibName = @"";
-    cacheAlternativeViewArray = nil;
+    _cachedNibName = @"";
+    _cacheAlternativeViewArray = nil;
 }
 
 - (void)addLayoutWithName:(NSString *)layoutName fromView:(UIView *)view {
@@ -108,9 +103,9 @@
 #endif
     
     NSMutableDictionary *layoutDictionary = [NSMutableDictionary dictionary];
-    [layouts setObject:layoutDictionary forKey:layoutName];
+    [_layouts setObject:layoutDictionary forKey:layoutName];
 
-    if (withBaseView == YES) {
+    if (self.withBaseView == YES) {
         [self addLayoutFromView:view toDictionary:layoutDictionary]; 
     } else {
         for (UIView *subview in view.subviews) {
@@ -132,24 +127,24 @@
     
     UIView *alternativeView = nil;
     
-    if ([cachedNibName isEqualToString:nib] == NO) {
+    if ([_cachedNibName isEqualToString:nib] == NO) {
         UIViewController *controller = [[UIViewController alloc] init];
         NSArray *alternativeViewArray = [[NSBundle mainBundle] loadNibNamed:nib owner:controller options:nil];
         alternativeView = [alternativeViewArray objectAtIndex:index];
         
-        if (nibCaching == YES) {
-            cachedNibName = nib;
-            cacheAlternativeViewArray = alternativeViewArray;
+        if (self.nibCaching == YES) {
+            _cachedNibName = nib;
+            _cacheAlternativeViewArray = alternativeViewArray;
         }
         
     } else {
-        alternativeView = [cacheAlternativeViewArray objectAtIndex:index];
+        alternativeView = [_cacheAlternativeViewArray objectAtIndex:index];
     }
     
     NSMutableDictionary *layoutDictionary = [NSMutableDictionary dictionary];
-    [layouts setObject:layoutDictionary forKey:layoutName];  
+    [_layouts setObject:layoutDictionary forKey:layoutName];  
     
-    if (withBaseView == YES) {
+    if (self.withBaseView == YES) {
         [self addLayoutFromAlternativeView:alternativeView forView:self.layoutView toDictionary:layoutDictionary];
     } else {
         UIView *alternativeViewSubview = nil;
@@ -164,13 +159,13 @@
 }
 
 - (void)removeLayoutWithName:(NSString *)layoutName { 
-    [layouts removeObjectForKey:layoutName];
+    [_layouts removeObjectForKey:layoutName];
 }
 //Test
 - (bool)addView:(UIView *)view toLayoutWithName:(NSString *)layoutName withSubviews:(bool)subviews { 
     assert(view != nil && layoutName != nil);
       
-    NSMutableDictionary *layoutDictionary = [layouts objectForKey:layoutName];
+    NSMutableDictionary *layoutDictionary = [_layouts objectForKey:layoutName];
     if (layoutDictionary == nil) {
         return NO;
     }
@@ -190,7 +185,7 @@
 - (bool)removeView:(UIView *)view fromLayoutWithName:(NSString *)layoutName withSubviews:(bool)subviews { 
     assert(view != nil && layoutName != nil);
     
-    NSMutableDictionary *layoutDictionary = [layouts objectForKey:layoutName];
+    NSMutableDictionary *layoutDictionary = [_layouts objectForKey:layoutName];
     if (layoutDictionary == nil) {
         return NO;
     }
@@ -208,11 +203,11 @@
     
     //View und subviews müssen aus viewarray entfernt werden
     if (subviews == YES) {
-        for (NSMutableDictionary *layoutDictionary in layouts.allValues) {
+        for (NSMutableDictionary *layoutDictionary in _layouts.allValues) {
             [self removeLayoutFromView:view fromDictionary:layoutDictionary]; 
         }
     }else {
-        for (NSMutableDictionary *layoutDictionary in layouts.allValues) {
+        for (NSMutableDictionary *layoutDictionary in _layouts.allValues) {
             [layoutDictionary removeObjectForKey:[NSNumber numberWithInt:(int)view]]; 
         }
     }
@@ -221,7 +216,7 @@
 - (bool)setFrame:(CGRect)frame forView:(UIView *)view inLayoutWithName:(NSString *)layoutName { 
     assert(view != nil && layoutName != nil);
     
-    NSMutableDictionary *layoutDictionary = [layouts objectForKey:layoutName];
+    NSMutableDictionary *layoutDictionary = [_layouts objectForKey:layoutName];
     if (layoutDictionary == nil) {
         return NO;
     }
@@ -252,7 +247,7 @@
         return NO;
     }*/
             
-    NSMutableDictionary *layoutDictionary = [layouts objectForKey:layoutName];
+    NSMutableDictionary *layoutDictionary = [_layouts objectForKey:layoutName];
     if (layoutDictionary == nil || self.layoutView == nil) {
         return NO;
     }
@@ -262,7 +257,7 @@
 #endif
     
     [self changeLayoutOfView:self.layoutView fromDictionary:layoutDictionary];
-    currentLayout = layoutName;
+    _currentLayout = layoutName;
 
     return YES;
 }
@@ -270,7 +265,7 @@
 - (bool)changeFrameFromView:(UIView *)view toLayoutWithName:(NSString *)layoutName withSubviews:(bool)withsubviews {
     assert([self isValid] == YES && view != nil && layoutName != nil);
     
-    NSMutableDictionary *layoutDictionary = [layouts objectForKey:layoutName];
+    NSMutableDictionary *layoutDictionary = [_layouts objectForKey:layoutName];
     if (layoutDictionary == nil) {
         return NO;
     }
@@ -327,7 +322,7 @@
 	[dictionary setObject:config forKey:[NSNumber numberWithInt:(int)view]];
 	
     //UIButtons option "Shows touch on hightlight" uses a extra View, that makes problems.
-    for (Class class in dontAddSubviewsFromThisClasses) {
+    for (Class class in _dontAddSubviewsFromThisClasses) {
         if([view isMemberOfClass:class] == YES) {
             return;
         }
@@ -358,7 +353,7 @@
     //NSLog(@"%@", NSStringFromCGRect([[tmp objectForKey:@"frame"]CGRectValue]));
     
     //UIButtons option "Shows touch on hightlight" uses a extra View, that makes problems.
-    for (Class class in dontAddSubviewsFromThisClasses) {
+    for (Class class in _dontAddSubviewsFromThisClasses) {
         if([view isMemberOfClass:class] == YES) {
             return;
         }

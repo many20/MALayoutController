@@ -33,16 +33,16 @@
 
 
 @interface MALayoutManager : NSObject {
-    NSMutableDictionary *layouts;
+    NSMutableDictionary *_layouts;
     
-    NSString *cachedNibName;
-    NSArray *cacheAlternativeViewArray;
+    NSString *_cachedNibName;
+    NSArray *_cacheAlternativeViewArray;
     
-    NSArray *dontAddSubviewsFromThisClasses;
+    NSArray *_dontAddSubviewsFromThisClasses;
 }
 
 @property (nonatomic, unsafe_unretained) UIView *layoutView;
-@property (nonatomic, strong, readonly) NSString* currentLayout;
+@property (nonatomic, strong, readonly) NSString *currentLayout;
 
 @property (nonatomic) BOOL nibCaching;
 @property (nonatomic) BOOL withBaseView;
